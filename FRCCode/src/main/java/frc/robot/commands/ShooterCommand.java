@@ -5,11 +5,12 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import frc.robot.subsystems.Drivetrain;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class Drive extends CommandBase {
+public class ShooterCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   //private final Drivetrain drivetrain;
 
@@ -18,11 +19,11 @@ public class Drive extends CommandBase {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public Drive() {
+  public ShooterCommand() {
     super();
     // Use addRequirements() here to declare subsystem dependencies.
     
-    addRequirements(Robot.Drivetrain);
+    addRequirements(Robot.Shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -32,10 +33,9 @@ public class Drive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double left = Robot.driver.getLeftY();
-    double right = Robot.driver.getRightY();
-    
-    Robot.Drivetrain.tankDriveVolts(left, right);
+    double rTrigger = Robot.driver.getRightTriggerAxis();
+
+    Robot.Shooter.shoot(rTrigger);
   }
 
   // Called once the command ends or is interrupted.
@@ -48,3 +48,4 @@ public class Drive extends CommandBase {
     return false;
   }
 }
+

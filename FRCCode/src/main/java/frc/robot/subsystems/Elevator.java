@@ -1,16 +1,14 @@
 package frc.robot.subsystems;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Elevator extends SubsystemBase {
     private static Elevator instance = null;
 
+    //Creates CANSparkMax vairable
     public static CANSparkMax elevatorMotor;
-
-    public static DifferentialDrive elevatorcontrol;
-
+     
+    //Creates Elevator Object instance
     public static Elevator getInstance(){
         if (instance == null){
             System.out.println("Elevator init");
@@ -19,16 +17,16 @@ public class Elevator extends SubsystemBase {
         return instance;
     }
     public Elevator () {
+        //Uses constructor from SubsystemBase
         super();
-        //frontLeft.setIdleMode(Spark.Kbrake);
         
-
-        //Right
+        //Elevator Motor
         elevatorMotor = new CANSparkMax(5, CANSparkMaxLowLevel.MotorType.kBrushed);
         
 
     }
 
+    //method to lift
     public void lift(double liftVolts) {
         elevatorMotor.setVoltage(liftVolts * 12);
 

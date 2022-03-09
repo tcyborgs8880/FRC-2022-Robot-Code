@@ -4,11 +4,36 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.revrobotics.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Shooter extends SubsystemBase {
+
+  private static Shooter instance = null;
+
+  public static CANSparkMax shooterMotor;
+
+  public static Shooter getInstance(){
+    if (instance == null){
+      System.out.println("Shooter init");
+      instance = new Shooter();
+    }
+    return instance;
+  }
+
   /** Creates a new ExampleSubsystem. */
-  public Shooter() {}
+  public Shooter() {
+    super();
+
+    shooterMotor = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
+  }
+
+  public void shoot(double shooterVolts){
+    shooterMotor.setVoltage(shooterVolts * 12);
+  }
 
   @Override
   public void periodic() {

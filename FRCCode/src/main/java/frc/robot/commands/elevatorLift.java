@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
@@ -32,9 +33,18 @@ public class elevatorLift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double left = Robot.driver.getLeftY();
-    double right = Robot.driver.getRightY();
-    Robot.Elevator.tankDriveVolts(left, right);
+    boolean aPressed = Robot.driver.getAButton();
+    boolean yPressed = Robot.driver.getYButton();
+    
+    if(aPressed){
+      Robot.Elevator.lift(-0.3);
+    }
+    else if (yPressed) {
+      Robot.Elevator.lift(0.3);
+    }
+    else{
+      Robot.Elevator.lift(0);
+    }
   }
 
   // Called once the command ends or is interrupted.
