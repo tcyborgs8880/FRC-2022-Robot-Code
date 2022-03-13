@@ -23,7 +23,7 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   //private final Drivetrain m_drivetrain = new Drivetrain();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem, Robot.Drivetrain);
+  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem, Robot.Drivetrain, Robot.Elevator);
 
   
 

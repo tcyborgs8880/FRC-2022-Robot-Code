@@ -1,3 +1,4 @@
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -24,7 +25,7 @@ public class Intake extends SubsystemBase {
     public Intake(){
         super();
 
-        intakeMotor = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushless);
+        //intakeMotor = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushless);
     }
 
     public void intakeMotors(double intakeVoltage){

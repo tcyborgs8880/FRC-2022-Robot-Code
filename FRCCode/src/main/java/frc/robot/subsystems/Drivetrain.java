@@ -1,4 +1,6 @@
+
 package frc.robot.subsystems;
+
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.*;
@@ -23,6 +25,7 @@ public class Drivetrain extends SubsystemBase {
         }
         return instance;
     }
+
     public Drivetrain () {
         super();
         //frontLeft.setIdleMode(Spark.Kbrake);

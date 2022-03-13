@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
 import frc.robot.commands.Drive;
+import frc.robot.commands.elevatorLift;
 import edu.wpi.first.cameraserver.CameraServer;
 
 /**
@@ -26,10 +27,12 @@ public class Robot extends TimedRobot {
   public static Shooter Shooter = new Shooter();
   public static Intake Intake = new Intake();
   public static Command driveCommand;
+  public static Command elevatorLiftCommand;
+  public static Command IntakeCommandCommand;
+  public static Command ShooterCommandCommand;
 
   private RobotContainer m_robotContainer;
   public static final XboxController driver = new XboxController(0);
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -42,6 +45,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     //Drivetrain = new Drivetrain();
     driveCommand = new Drive();
+    elevatorLiftCommand = new elevatorLift();
 
   }
 
@@ -100,6 +104,9 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     driveCommand.schedule();
+    elevatorLiftCommand.schedule();
+    //IntakeCommandCommand.schedule();
+    //ShooterCommandCommand.schedule();
   }
 
   @Override

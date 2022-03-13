@@ -1,4 +1,8 @@
+
 package frc.robot.subsystems;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -15,7 +19,7 @@ public class Elevator extends SubsystemBase {
             instance = new Elevator();
         }
         return instance;
-    }
+    } 
     public Elevator () {
         //Uses constructor from SubsystemBase
         super();
@@ -27,9 +31,9 @@ public class Elevator extends SubsystemBase {
     }
 
     //method to lift
-    public void lift(double liftVolts) {
-        elevatorMotor.setVoltage(liftVolts * 12);
-
+    public void lift(double aLiftVolts, double yLiftVolts) {
+        elevatorMotor.setVoltage(aLiftVolts*12);
+        elevatorMotor.setVoltage(yLiftVolts*12);
     }
 
 }

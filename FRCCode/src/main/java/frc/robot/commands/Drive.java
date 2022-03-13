@@ -11,7 +11,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 /** An example command that uses an example subsystem. */
 public class Drive extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  //private final Drivetrain drivetrain;
+  
+ // private final Drivetrain drivetrain;
 
   /**
    * Creates a new ExampleCommand.
@@ -36,6 +37,7 @@ public class Drive extends CommandBase {
     double right = Robot.driver.getRightY();
     
     Robot.Drivetrain.tankDriveVolts(left, right);
+    System.out.println("Tank Drive Working");
   }
 
   // Called once the command ends or is interrupted.
