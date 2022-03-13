@@ -39,7 +39,7 @@ public class ExampleCommand extends CommandBase {
   @Override
   public void execute() {
     m_drivetrain.tankDriveVolts(0.1, 0.1);
-    m_elevator.lift(0.3, 03);
+    m_elevator.lift(0.3);
   }
 
   // Called once the command ends or is interrupted.

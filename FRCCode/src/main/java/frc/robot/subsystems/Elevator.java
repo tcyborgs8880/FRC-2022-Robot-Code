@@ -31,9 +31,8 @@ public class Elevator extends SubsystemBase {
     }
 
     //method to lift
-    public void lift(double aLiftVolts, double yLiftVolts) {
-        elevatorMotor.setVoltage(aLiftVolts*12);
-        elevatorMotor.setVoltage(yLiftVolts*12);
+    public void lift(double liftVolts) {
+        elevatorMotor.setVoltage(liftVolts*12);
     }
 
 }
