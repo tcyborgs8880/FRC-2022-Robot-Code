@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -15,20 +16,23 @@ public class ExampleCommand extends CommandBase {
   private final ExampleSubsystem m_subsystem;
   private final Drivetrain m_drivetrain;
   private final Elevator m_elevator;
+  private final Intake m_intake;
 
   /**
    * Creates a new ExampleCommand.
    * 
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(ExampleSubsystem subsystem, Drivetrain drivetrain, Elevator elevator) {
+  public ExampleCommand(ExampleSubsystem subsystem, Drivetrain drivetrain, Elevator elevator, Intake intake) {
     m_subsystem = subsystem;
     m_drivetrain = drivetrain;
     m_elevator = elevator;
+    m_intake = intake;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
     addRequirements(m_drivetrain);
     addRequirements(m_elevator);
+    addRequirements(m_intake);
   }
 
   // Called when the command is initially scheduled.
