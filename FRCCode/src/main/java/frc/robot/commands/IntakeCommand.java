@@ -36,27 +36,27 @@ public class IntakeCommand extends CommandBase {
     
     boolean dropper = Robot.driver.getXButton();
 
-    boolean intake = Robot.driver.getStartButtonPressed();
-    boolean intakeOn = false;
+    boolean intake = Robot.driver.getBButton();
+    //boolean intakeOn = false;
 
     Robot.Intake.intakeMotors(0.3);
 
-    /*
+    
     if (dropper){
       Robot.Intake.drop(0.3);
     }
     else
       Robot.Intake.drop(0);
 
-    if (intake) intakeOn = !intakeOn;
+    //if (intake) intakeOn = !intakeOn;
     
-    if (intakeOn){
-      Robot.Intake.intakeMotors(0.3);
+    if (intake){
+      Robot.Intake.intakeMotors(0.4);
     }
     else {
       Robot.Intake.intakeMotors(0);
     }
-    */
+
   }
 
   // Called once the command ends or is interrupted.
