@@ -51,7 +51,7 @@ public class IntakeCommand extends CommandBase {
     //if (intake) intakeOn = !intakeOn;
     
     if (intake){
-      Robot.Intake.intakeMotors(0.4);
+      Robot.Intake.intakeMotors(0.3);
     }
     else {
       Robot.Intake.intakeMotors(0);

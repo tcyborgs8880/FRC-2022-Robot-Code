@@ -5,14 +5,13 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.*;
+//import frc.robot.subsystems.Elevator;
+//import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class elevatorLift extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  //private final Drivetrain drivetrain;
 
   /**
    * Creates a new ExampleCommand.
@@ -22,7 +21,6 @@ public class elevatorLift extends CommandBase {
   public elevatorLift() {
     super();
     // Use addRequirements() here to declare subsystem dependencies.
-    
     addRequirements(Robot.Elevator);
   }
 

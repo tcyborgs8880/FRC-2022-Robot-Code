@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Autonomous;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Timer;
@@ -14,9 +15,9 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
-public class ExampleCommand extends CommandBase {
+public class AutoCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ExampleSubsystem m_subsystem;
+  private final Autonomous m_autonomous;
   private final Drivetrain m_drivetrain;
   private final Timer timer;
 
@@ -29,8 +30,8 @@ public class ExampleCommand extends CommandBase {
    * 
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(ExampleSubsystem subsystem, Drivetrain drivetrain) {
-    m_subsystem = subsystem;
+  public AutoCommand(Autonomous subsystem, Drivetrain drivetrain) {
+    m_autonomous = subsystem;
     m_drivetrain = drivetrain;
     timer = new Timer();
 
