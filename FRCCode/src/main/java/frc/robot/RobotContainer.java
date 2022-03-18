@@ -23,7 +23,7 @@ public class RobotContainer {
   private final Autonomous m_autonomous = new Autonomous();
   //private final Drivetrain m_drivetrain = new Drivetrain();
 
-  private final AutoCommand m_autoCommand = new AutoCommand(m_autonomous, Robot.Drivetrain);
+  private final AutoCommand m_autoCommand = new AutoCommand(m_autonomous, Robot.Drivetrain, Robot.Shooter, Robot.Intake);
 
   
 

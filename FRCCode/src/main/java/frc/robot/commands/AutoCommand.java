@@ -19,6 +19,8 @@ public class AutoCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Autonomous m_autonomous;
   private final Drivetrain m_drivetrain;
+  private final Shooter m_shooter;
+  private final Intake m_intake; //Faaiz
   private final Timer timer;
 
   //private final Elevator m_elevator;
@@ -30,13 +32,17 @@ public class AutoCommand extends CommandBase {
    * 
    * @param subsystem The subsystem used by this command.
    */
-  public AutoCommand(Autonomous subsystem, Drivetrain drivetrain) {
+  public AutoCommand(Autonomous subsystem, Drivetrain drivetrain, Shooter shooter, Intake intake) {
     m_autonomous = subsystem;
     m_drivetrain = drivetrain;
+    m_shooter = shooter; //Faaiz
+    m_intake = intake;
     timer = new Timer();
 
     addRequirements(subsystem);
     addRequirements(m_drivetrain);
+    addRequirements(m_shooter);
+    addRequirements(m_intake); //Faaiz
   }
 
   // Called when the command is initially scheduled.
@@ -50,7 +56,19 @@ public class AutoCommand extends CommandBase {
   public void execute() {
     double time = timer.get();  //Gets time elapsed in seconds
 
-    m_drivetrain.tankDriveVolts(0.3, 0.3);
+    if (time < 3){
+        m_drivetrain.tankDriveVolts(0, 0);
+        m_intake.drop(0.3);
+        m_intake.intakeMotors(0.3);
+
+    }
+    else if (time < 7){
+        m_drivetrain.tankDriveVolts(-0.3, -0.3);
+        m_intake.drop(0);
+        m_intake.intakeMotors(0);
+    }
+    else   
+        m_drivetrain.tankDriveVolts(0, 0);
   }
 
   // Called once the command ends or is interrupted.

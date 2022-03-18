@@ -9,6 +9,7 @@ import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import com.revrobotics.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
 
@@ -28,7 +29,7 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     super();
 
-    shooterMotor = new CANSparkMax(8, CANSparkMaxLowLevel.MotorType.kBrushless);
+    shooterMotor = new CANSparkMax(Constants.shooterSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
 
   }
 
