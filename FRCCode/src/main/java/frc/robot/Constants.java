@@ -16,4 +16,7 @@ public final class Constants {
      final public static int shooterSpark = 8;
      final public static int frontIntakeSpark = 6;
      final public static int backIntakeSpark = 7; 
+
+     final public static double autoDrivetrainVolts = 0.3;
+     
 }

@@ -10,6 +10,7 @@ import frc.robot.subsystems.Autonomous;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Timer;
+import frc.robot.Constants;
 
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -39,7 +40,7 @@ public class AutoCommand extends CommandBase {
     m_intake = intake;
     timer = new Timer();
 
-    addRequirements(subsystem);
+    addRequirements(m_autonomous);
     addRequirements(m_drivetrain);
     addRequirements(m_shooter);
     addRequirements(m_intake); //Faaiz
@@ -58,12 +59,12 @@ public class AutoCommand extends CommandBase {
 
     if (time < 3){
         m_drivetrain.tankDriveVolts(0, 0);
-        m_intake.drop(0.3);
+        m_intake.drop(0.3);  
         m_intake.intakeMotors(0.3);
 
     }
     else if (time < 7){
-        m_drivetrain.tankDriveVolts(-0.3, -0.3);
+        m_drivetrain.tankDriveVolts(Constants.autoDrivetrainVolts * -1, Constants.autoDrivetrainVolts * -1);
         m_intake.drop(0);
         m_intake.intakeMotors(0);
     }

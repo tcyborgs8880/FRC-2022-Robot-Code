@@ -9,11 +9,14 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+
 /** An example command that uses an example subsystem. */
 public class IntakeCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   //private final Intake drivetrain;
 
+  private boolean toggle;
+  private boolean on;
   /**
    * Creates a new ExampleCommand.
    *
@@ -28,34 +31,51 @@ public class IntakeCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    toggle = true;
+      on = false;
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     
-    boolean dropper = Robot.driver.getXButton();
-
+    //boolean dropper = Robot.driver.getXButton();
     boolean intake = Robot.driver.getBButton();
-    //boolean intakeOn = false;
-
-    Robot.Intake.intakeMotors(0.3);
-
     
+    
+    //if (intake) {
+    //  on = !on;
+    
+    
+
+    //Turns on intake motors if B button pressed
+    if (toggle && intake){
+      toggle = false;
+      if(on){
+        on = false;
+        Robot.Intake.intakeMotors(0.3);
+        } 
+      else {
+       on =  true;
+       Robot.Intake.intakeMotors(0);
+      }
+    }
+    else if(intake && !toggle){
+      toggle = true;
+    }
+    System.out.println("Intake ON: " + on);
+    
+    /*
     if (dropper){
       Robot.Intake.drop(0.3);
     }
-    else
+    else { 
       Robot.Intake.drop(0);
-
-    //if (intake) intakeOn = !intakeOn;
+    }
+    */
     
-    if (intake){
-      Robot.Intake.intakeMotors(0.3);
-    }
-    else {
-      Robot.Intake.intakeMotors(0);
-    }
+   
 
   }
 

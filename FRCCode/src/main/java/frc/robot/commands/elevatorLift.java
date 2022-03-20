@@ -35,12 +35,12 @@ public class elevatorLift extends CommandBase {
     boolean yPressed = Robot.driver.getYButton();
 
     if(aPressed){
-      Robot.Elevator.lift(-0.3);
+      Robot.Elevator.lift(-0.5);
       System.out.println("A was pressed");
     }
     else if (yPressed) {
       System.out.println("Y was pressed");
-      Robot.Elevator.lift(0.3);
+      Robot.Elevator.lift(0.5);
     }
     else{
       System.out.println("Nothing was pressed");

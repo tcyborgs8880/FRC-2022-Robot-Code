@@ -15,6 +15,8 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.elevatorLift;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.*;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
