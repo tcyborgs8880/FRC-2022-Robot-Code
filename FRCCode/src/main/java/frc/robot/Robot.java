@@ -10,13 +10,17 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
-import frc.robot.commands.Drive;
-import frc.robot.commands.IntakeCommand;
-import frc.robot.commands.ShooterCommand;
-import frc.robot.commands.elevatorLift;
+import frc.robot.commands.*;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.*;
+import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
 
+/*
+
+  Date: 3.21.21
+  Task Done: Got shooter
+
+*/
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,10 +35,16 @@ public class Robot extends TimedRobot {
   public static Elevator Elevator = new Elevator();
   public static Shooter Shooter = new Shooter();
   public static Intake Intake = new Intake();
+  public static Dropper Dropper = new Dropper();
   public static Command driveCommand;
   public static Command elevatorLiftCommand;
   public static Command IntakeCommandCommand;
   public static Command ShooterCommandCommand;
+  public static Command DropperCommandCommand;
+  public Thread visionThread;
+  public Robot(){
+
+  }
 
   private RobotContainer m_robotContainer;
   public static final XboxController driver = new XboxController(0);
@@ -53,6 +63,14 @@ public class Robot extends TimedRobot {
     elevatorLiftCommand = new elevatorLift();
     IntakeCommandCommand = new IntakeCommand();
     ShooterCommandCommand = new ShooterCommand();
+    DropperCommandCommand = new DropperCommand();
+    new Thread(() -> {
+      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+      camera.setResolution(1280, 720);
+      camera.setFPS(24);
+      camera.setExposureManual(45);
+      camera.setConnectionStrategy(ConnectionStrategy.kKeepOpen);
+    }).start();
   }
 
 
