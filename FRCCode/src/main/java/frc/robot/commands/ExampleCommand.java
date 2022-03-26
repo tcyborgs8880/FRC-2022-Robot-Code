@@ -4,10 +4,7 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Timer;
 
 import frc.robot.subsystems.ExampleSubsystem;

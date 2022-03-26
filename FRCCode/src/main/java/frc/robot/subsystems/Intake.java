@@ -1,10 +1,20 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+/*
+
+  Date: 3/22/22
+  Name: Faaiz
+  Task Done: Created class
+
+*/
 
 package frc.robot.subsystems;
 
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-//import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
@@ -26,8 +36,8 @@ public class Intake extends SubsystemBase {
     public Intake(){
         super();
 
-        frontIntakeMotor = new CANSparkMax(6, CANSparkMaxLowLevel.MotorType.kBrushless);
-        backIntakeMotor = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
+        frontIntakeMotor = new CANSparkMax(Constants.frontIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
+        backIntakeMotor = new CANSparkMax(Constants.backIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
 
     }
 

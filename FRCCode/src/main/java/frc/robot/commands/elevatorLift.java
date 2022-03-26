@@ -2,8 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/*
+
+  Date: 3/22/22
+  Name: Faaiz
+  Task Done: Created class
+
+*/
+
 package frc.robot.commands;
 
+import frc.robot.Constants;
 import frc.robot.Robot;
 //import frc.robot.subsystems.Elevator;
 //import frc.robot.subsystems.*;
@@ -35,12 +44,12 @@ public class elevatorLift extends CommandBase {
     boolean yPressed = Robot.driver.getYButton();
 
     if(aPressed){
-      Robot.Elevator.lift(-0.5);
+      Robot.Elevator.lift(Constants.elevatorVolts * -1);
       System.out.println("A was pressed");
     }
     else if (yPressed) {
       System.out.println("Y was pressed");
-      Robot.Elevator.lift(0.5);
+      Robot.Elevator.lift(Constants.elevatorVolts);
     }
     else{
       System.out.println("Nothing was pressed");

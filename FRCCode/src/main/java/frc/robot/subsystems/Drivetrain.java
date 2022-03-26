@@ -1,3 +1,14 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+/*
+
+  Date: 3/22/22
+  Name: Team 2338 (everyone knows methods though)
+  Task Done: Created class
+
+*/
 
 package frc.robot.subsystems;
 
@@ -5,6 +16,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import com.revrobotics.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
 
 public class Drivetrain extends SubsystemBase {
     private static Drivetrain instance = null;
@@ -32,11 +45,11 @@ public class Drivetrain extends SubsystemBase {
         
 
         //Right
-        frontRight = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushed);
-        backRight = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushed);
+        frontRight = new CANSparkMax(Constants.frontRightSpark, CANSparkMaxLowLevel.MotorType.kBrushed);
+        backRight = new CANSparkMax(Constants.backRightSpark, CANSparkMaxLowLevel.MotorType.kBrushed);
 
-        frontLeft = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushed);
-        backLeft = new CANSparkMax(4, CANSparkMaxLowLevel.MotorType.kBrushed);
+        frontLeft = new CANSparkMax(Constants.frontLeftSpark, CANSparkMaxLowLevel.MotorType.kBrushed);
+        backLeft = new CANSparkMax(Constants.backLeftSpark, CANSparkMaxLowLevel.MotorType.kBrushed);
 
         frontRight.setInverted(true);
         backRight.setInverted(true);

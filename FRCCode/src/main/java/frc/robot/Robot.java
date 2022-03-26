@@ -2,10 +2,17 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+/*
+
+  Date:
+  Name:
+  Task Done:
+
+*/
+
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -14,13 +21,7 @@ import frc.robot.commands.*;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.cscore.VideoSource.ConnectionStrategy;
-
-/*
-
-  Date: 3.21.21
-  Task Done: Got shooter
-
-*/
+//import edu.wpi.first.wpilibj.Timer;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
   public static Command ShooterCommandCommand;
   public static Command DropperCommandCommand;
   public Thread visionThread;
+  
   public Robot(){
 
   }
