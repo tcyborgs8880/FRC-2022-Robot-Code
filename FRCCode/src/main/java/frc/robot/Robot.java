@@ -136,6 +136,7 @@ public class Robot extends TimedRobot {
     elevatorLiftCommand.schedule();
     IntakeCommandCommand.schedule();
     ShooterCommandCommand.schedule();
+    DropperCommandCommand.schedule();
   }
 
   @Override

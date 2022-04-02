@@ -34,10 +34,10 @@ public final class Constants {
     
     final public static int frontIntakeSpark = 6;
     final public static int backIntakeSpark = 7;
+    final public static int sideIntakeSpark = 10;
     
     final public static int shooterSpark = 8;
     final public static int beltSpark = 9;
-    final public static int curveSpark = 10;
 
     final public static int dropperSpark = 11;
     

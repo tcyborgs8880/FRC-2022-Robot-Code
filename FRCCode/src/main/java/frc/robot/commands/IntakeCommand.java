@@ -53,7 +53,7 @@ public class IntakeCommand extends CommandBase {
     if (toggle && intake){
       toggle = false;
       if(on){
-        Robot.Intake.intakeMotors(0.3);
+        Robot.Intake.intakeMotors(0.5);
         on = false;
         } 
       else {

@@ -23,7 +23,6 @@ public class Shooter extends SubsystemBase {
 
   public static CANSparkMax shooterMotor;
   public static CANSparkMax beltMotor;
-  public static CANSparkMax curveMotor;
 
   public static Shooter getInstance(){
     if (instance == null){
@@ -39,12 +38,12 @@ public class Shooter extends SubsystemBase {
 
     shooterMotor = new CANSparkMax(Constants.shooterSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
     beltMotor = new CANSparkMax(Constants.beltSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
-    curveMotor = new CANSparkMax(Constants.curveSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
-
+    beltMotor.setInverted(true);
   }
 
-  public void shoot(double shooterVolts){
+  public void shootShooter(double shooterVolts){
     shooterMotor.setVoltage(shooterVolts * 12);
+    beltMotor.setVoltage(shooterVolts * 3);
   }
 
   @Override

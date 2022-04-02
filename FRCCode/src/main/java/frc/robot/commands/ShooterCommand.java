@@ -41,7 +41,7 @@ public class ShooterCommand extends CommandBase {
   public void execute() {
     double rTrigger = Robot.driver.getRightTriggerAxis();
 
-    Robot.Shooter.shoot(rTrigger);
+    Robot.Shooter.shootShooter(rTrigger);
   }
 
   // Called once the command ends or is interrupted.

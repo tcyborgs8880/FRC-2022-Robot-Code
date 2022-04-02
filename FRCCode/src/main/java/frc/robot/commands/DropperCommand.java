@@ -4,23 +4,25 @@
 
 /*
 
-  Date: 3/22/22
-  Name: Sidrah
-  Task Done: Created class
-
+  Date: 4/1/22
+  Name: Faaiz
+  Task Done: fixed dropper code
 */
 
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import frc.robot.Constants;
 //import frc.robot.subsystems.Elevator;
 //import frc.robot.subsystems.*;
+//import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 /** An example command that uses an example subsystem. */
 public class DropperCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
+  //private final Timer timer;
   /**
    * Creates a new ExampleCommand.
    *
@@ -30,30 +32,29 @@ public class DropperCommand extends CommandBase {
     super();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.Dropper);
+    //timer = new Timer();
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    //timer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    boolean RBPressed = Robot.driver.getRightBumper();
     boolean LBPressed = Robot.driver.getLeftBumper();
+    boolean RBPressed = Robot.driver.getRightBumper();
 
-    if(RBPressed){
-      Robot.Dropper.drop(-0.5);
-      System.out.println("RB was pressed");
+    if (LBPressed){
+      Robot.Dropper.drop(0.2); //drop down
     }
-    else if (LBPressed) {
-      System.out.println("LB was pressed");
-      Robot.Dropper.drop(0.5);
+    else if (RBPressed){
+      Robot.Dropper.drop(-0.2); //bring up
     }
-    else{
-      System.out.println("Nothing was pressed");
+    else
       Robot.Dropper.drop(0);
-    }
     
   }
 

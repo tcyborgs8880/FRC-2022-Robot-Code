@@ -22,6 +22,7 @@ public class Intake extends SubsystemBase {
 
     public static CANSparkMax frontIntakeMotor;
     public static CANSparkMax backIntakeMotor;
+    public static CANSparkMax sideIntakeMotor;
 
     public static Intake getInstance(){
 
@@ -38,18 +39,15 @@ public class Intake extends SubsystemBase {
 
         frontIntakeMotor = new CANSparkMax(Constants.frontIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
         backIntakeMotor = new CANSparkMax(Constants.backIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
-
+        sideIntakeMotor = new CANSparkMax(Constants.sideIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
+        sideIntakeMotor.setInverted(true);
     }
 
-    //Sets both intake motor to the same speed
+    //Sets all intake motors to the same speed
     public void intakeMotors(double intakeVoltage){
         frontIntakeMotor.setVoltage(intakeVoltage * 12);
         backIntakeMotor.setVoltage(intakeVoltage * 12);
-    }
-
-    //Runs the drop intake motor
-    public void drop(double intakeVoltage){
-        //Need to add a motor for drop
+        sideIntakeMotor.setVoltage(intakeVoltage * 12);
     }
     
 

@@ -25,6 +25,7 @@ public class AutoCommand extends CommandBase {
   private final Shooter m_shooter;
   private final Intake m_intake; //Faaiz
   private final Timer timer;
+  private final Dropper m_dropper;
 
   //private final Elevator m_elevator;
  // private final Intake m_intake;
@@ -35,17 +36,19 @@ public class AutoCommand extends CommandBase {
    * 
    * @param subsystem The subsystem used by this command.
    */
-  public AutoCommand(Autonomous subsystem, Drivetrain drivetrain, Shooter shooter, Intake intake) {
+  public AutoCommand(Autonomous subsystem, Drivetrain drivetrain, Shooter shooter, Intake intake, Dropper dropper) {
     m_autonomous = subsystem;
     m_drivetrain = drivetrain;
     m_shooter = shooter; //Faaiz
     m_intake = intake;
+    m_dropper = dropper;
     timer = new Timer();
 
     addRequirements(m_autonomous);
     addRequirements(m_drivetrain);
     addRequirements(m_shooter);
-    addRequirements(m_intake); //Faaiz
+    addRequirements(m_intake);
+    addRequirements(m_dropper); //Faaiz
   }
 
   // Called when the command is initially scheduled.
@@ -58,23 +61,31 @@ public class AutoCommand extends CommandBase {
   @Override
   public void execute() {
     double time = timer.get();  //Gets time elapsed in seconds
-
-    if (time < 3){
+    if (time < 2){
+      m_drivetrain.tankDriveVolts(-0.3, -0.3);
+    }
+    else 
+      m_drivetrain.tankDriveVolts(0, 0);
+    /*
+     if (time < 3){
         m_drivetrain.tankDriveVolts(0, 0);
-        m_intake.drop(0.3);  
+        m_intake.intakeMotors(0.3);  
         m_intake.intakeMotors(0.3);
 
     }
     else if (time < 7){
         m_drivetrain.tankDriveVolts(Constants.autoDrivetrainVolts * -1, Constants.autoDrivetrainVolts * -1);
-        m_intake.drop(0);
+        m_intake.intakeMotors(0);
         m_intake.intakeMotors(0);
     }
-    else if (time < 9){
-      m_shooter.shoot(0.4);
+    else if (time < 11){
+      m_shooter.shootShooter(0.4);
     }
-    else   
-        m_drivetrain.tankDriveVolts(0, 0);
+    else {
+      m_drivetrain.tankDriveVolts(0, 0);
+      m_shooter.shootShooter(0);
+    }
+    */   
   }
 
   // Called once the command ends or is interrupted.
