@@ -61,37 +61,67 @@ public class AutoCommand extends CommandBase {
   @Override
   public void execute() {
     double time = timer.get();  //Gets time elapsed in seconds
-    if (time < 2){
+     /*
+    ROTATION CODE
+    if  (time < 2.84){
+      m_drivetrain.tankDriveVolts(0.3, -0.3);
+    }
+
+    */
+    /*
+   BLUE ALLIANCE (2 Ball Shoot)
+    */   
+  
+    if (time < 0.1){
+      m_dropper.drop(0.05);
+    }
+    else if (time < 2){
+      m_drivetrain.tankDriveVolts(-0.38, -0.53);
+    }
+    else if (time < 6){
+      m_drivetrain.tankDriveVolts(0, 0);
+      m_intake.intakeMotors(0.6);
+    }
+    else if (time < 6.005){
+      m_intake.intakeMotors(0);
+    }
+    else if (time < 7.5){
+      m_drivetrain.tankDriveVolts(0.38, -0.53);
+    }
+    else if (time < 10){
+      m_drivetrain.tankDriveVolts(0, 0);
+    }
+    else if (time < 12){
+      //speed and how far the ball needs to go down
+      m_shooter.shootShooter(0.7);
+    }
+    else if (time < 13){
+      m_intake.intakeMotors(0.6);
+    }
+    else if (time < 15){
+      m_shooter.shootShooter(0);
+      m_intake.intakeMotors(0);
+    }
+    
+      
+    //Surrender (1 Ball Shoot)
+    /*if (time < 2){
       m_drivetrain.tankDriveVolts(-0.3, -0.3);
     }
-    else 
-      m_drivetrain.tankDriveVolts(0, 0);
-    /*
-     if (time < 3){
-        m_drivetrain.tankDriveVolts(0, 0);
-        m_intake.intakeMotors(0.3);  
-        m_intake.intakeMotors(0.3);
-
+    else if (time < 4.84){
+      m_drivetrain.tankDriveVolts(0.3, -0.3);
     }
     else if (time < 7){
-        m_drivetrain.tankDriveVolts(Constants.autoDrivetrainVolts * -1, Constants.autoDrivetrainVolts * -1);
-        m_intake.intakeMotors(0);
-        m_intake.intakeMotors(0);
+      m_shooter.shootShooter(0.8);
     }
-    else if (time < 11){
-      m_shooter.shootShooter(0.4);
-    }
-    else {
-      m_drivetrain.tankDriveVolts(0, 0);
-      m_shooter.shootShooter(0);
-    }
-    */   
+    */
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     timer.stop(); //stops the timer once autonomous ends
+    timer.reset();
   }
 
   // Returns true when the command should end.

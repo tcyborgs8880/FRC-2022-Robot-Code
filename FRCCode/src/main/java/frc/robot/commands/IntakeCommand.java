@@ -14,6 +14,7 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 
 /** An example command that uses an example subsystem. */
@@ -23,6 +24,7 @@ public class IntakeCommand extends CommandBase {
 
   private boolean toggle;
   private boolean on;
+  private Timer timer;
   /**
    * Creates a new ExampleCommand.
    *
@@ -32,6 +34,7 @@ public class IntakeCommand extends CommandBase {
     super();
     // Use addRequirements() here to declare subsystem dependencies.
     
+    timer = new Timer();
     addRequirements(Robot.Intake);
   }
 
@@ -46,15 +49,45 @@ public class IntakeCommand extends CommandBase {
   public void execute() {
     
     //boolean dropper = Robot.driver.getXButton();
-    boolean intake = Robot.driver.getBButton();
-    toggle = true;
+    boolean intakeOn = Robot.driver.getBButton();
+    boolean intakeOff = Robot.driver.getXButton();
 
+    if (intakeOn && !intakeOff){
+      on = true;      
+    }
+    else if (!intakeOn && intakeOff){
+      on = false;
+    }
+
+    if(on) Robot.Intake.intakeMotors(0.5);
+    else Robot.Intake.intakeMotors(0);
+    
+    /*
+    if(intake) timer.start();
+    else{
+      timer.stop();
+      timer.reset();
+    }
+
+    if(timer.get() > 0.1 && timer.get() < 5) 
+    {
+      on = !on;
+      timer.stop();
+      timer.reset();
+    }
+    System.out.println("ON: " + on);
+    System.out.println("timer: " + timer.get());
+    if(on) Robot.Intake.intakeMotors(0.5);
+    else Robot.Intake.intakeMotors(0);
+
+    //boolean backIntake = Robot.driver.getXButton();
+    toggle = true;
     //Turns on intake motors if B button pressed
     if (toggle && intake){
       toggle = false;
       if(on){
         Robot.Intake.intakeMotors(0.5);
-        on = false;
+        on = false; 
         } 
       else {
        Robot.Intake.intakeMotors(0);
@@ -65,6 +98,7 @@ public class IntakeCommand extends CommandBase {
       toggle = true;
     }
     System.out.println("Intake ON: " + on);
+    */ 
   }
 
   // Called once the command ends or is interrupted.

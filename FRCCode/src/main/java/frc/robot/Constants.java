@@ -41,8 +41,14 @@ public final class Constants {
 
     final public static int dropperSpark = 11;
     
-  //Voltages
+  //Voltages/Speeds
+
     final public static double autoDrivetrainVolts = 0.3;
+
     final public static double elevatorVolts = 0.5;
+
+    final public static double intakeVolts = 0.4;
+
+    final public static double intakeArmVolts = 0.18;
 
 }

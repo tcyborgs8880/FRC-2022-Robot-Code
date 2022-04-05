@@ -4,9 +4,9 @@
 
 /*
 
-  Date: 4/1/22
+  Date: 4/5/22
   Name: Faaiz
-  Task Done: fixed dropper code
+  Task Done: updated dropper code
 */
 
 package frc.robot.commands;
@@ -47,10 +47,10 @@ public class DropperCommand extends CommandBase {
     boolean LBPressed = Robot.driver.getLeftBumper();
     boolean RBPressed = Robot.driver.getRightBumper();
 
-    if (LBPressed){
+    if (RBPressed){
       Robot.Dropper.drop(0.2); //drop down
     }
-    else if (RBPressed){
+    else if (LBPressed){
       Robot.Dropper.drop(-0.2); //bring up
     }
     else

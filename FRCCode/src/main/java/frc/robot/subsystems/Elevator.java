@@ -13,6 +13,8 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.*;
+import com.revrobotics.CANSparkMax.IdleMode;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -21,6 +23,7 @@ public class Elevator extends SubsystemBase {
 
     //Creates CANSparkMax vairable
     public static CANSparkMax elevatorMotor;
+    public static SparkMaxPIDController pidController;
      
     //Creates Elevator Object instance
     public static Elevator getInstance(){
@@ -36,13 +39,23 @@ public class Elevator extends SubsystemBase {
         
         //Elevator Motor
         elevatorMotor = new CANSparkMax(Constants.elevatorSpark, CANSparkMaxLowLevel.MotorType.kBrushed);
-        
+        elevatorMotor.setIdleMode(IdleMode.kBrake);
 
+        pidController = elevatorMotor.getPIDController();
     }
 
     //method to lift
     public void lift(double liftVolts) {
         elevatorMotor.setVoltage(liftVolts*12);
+    }
+
+    public double getElevatorTicks() {
+        return 0;
+        // return elevatorMotor.getEncoder().getPosition();
+    }
+
+    public void resetElevatorTicks() {
+        elevatorMotor.getEncoder().setPosition(0);
     }
 
 }

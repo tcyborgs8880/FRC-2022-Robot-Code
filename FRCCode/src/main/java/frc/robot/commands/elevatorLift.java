@@ -22,6 +22,8 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class elevatorLift extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
 
+  private boolean isClimberUp = false;
+
   /**
    * Creates a new ExampleCommand.
    *
@@ -33,6 +35,7 @@ public class elevatorLift extends CommandBase {
     addRequirements(Robot.Elevator);
   }
 
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -42,20 +45,36 @@ public class elevatorLift extends CommandBase {
   public void execute() {
     boolean aPressed = Robot.driver.getAButton();
     boolean yPressed = Robot.driver.getYButton();
+    boolean climbing = Robot.driver.getBackButtonPressed();
 
-    if(aPressed){
+    System.out.println("Elevator Position: " + Robot.Elevator.getElevatorTicks());
+
+    if(Robot.driver.getStartButtonPressed()) {
+      Robot.Elevator.resetElevatorTicks();
+    }
+
+    if (climbing){
+      isClimberUp = true;
+    }
+
+
+
+    if(aPressed && !isClimberUp){
       Robot.Elevator.lift(Constants.elevatorVolts * -1);
       System.out.println("A was pressed");
     }
-    else if (yPressed) {
+    else if (yPressed && Robot.Elevator.getElevatorTicks() < 10000) {
       System.out.println("Y was pressed");
       Robot.Elevator.lift(Constants.elevatorVolts);
+
+    } 
+    else if (isClimberUp && Robot.Elevator.getElevatorTicks() < 10000) {
+      Robot.Elevator.lift(0.4); //Need to test for balanced power
     }
     else{
       System.out.println("Nothing was pressed");
       Robot.Elevator.lift(0);
     }
-    
   }
 
   // Called once the command ends or is interrupted.

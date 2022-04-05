@@ -40,8 +40,16 @@ public class ShooterCommand extends CommandBase {
   @Override
   public void execute() {
     double rTrigger = Robot.driver.getRightTriggerAxis();
+    double lTrigger = Robot.driver.getLeftTriggerAxis();
 
-    Robot.Shooter.shootShooter(rTrigger);
+    if (rTrigger > 0 && lTrigger == 0){
+      Robot.Shooter.shootShooter(rTrigger);
+    }
+    else if (lTrigger > 0 && rTrigger == 0){
+      Robot.Shooter.shootShooter(lTrigger * -1);
+    }
+    else
+      Robot.Shooter.shootShooter(0);
   }
 
   // Called once the command ends or is interrupted.

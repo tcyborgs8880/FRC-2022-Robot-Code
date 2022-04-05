@@ -4,15 +4,16 @@
 
 /*
 
-  Date: 1/4/22
+  Date: 1/5/22
   Name: Faaiz
-  Task Done: Updated Variables in Class
+  Task Done: Updated Dropper Code
 
 */
 
 package frc.robot.subsystems;
 
 import com.revrobotics.*;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -37,14 +38,16 @@ public class Dropper extends SubsystemBase {
         super();
         
         //Elevator Motor
-        dropperMotor = new CANSparkMax(Constants.dropperSpark, CANSparkMaxLowLevel.MotorType.kBrushless);        
-
+        dropperMotor = new CANSparkMax(Constants.dropperSpark, CANSparkMaxLowLevel.MotorType.kBrushless); 
     }
 
     //method to lift
-    public void drop(double dropVolts) {
-        dropperMotor.setIdleMode(IdleMode.kBrake);
-        dropperMotor.setVoltage(dropVolts*12);
+    public void drop(double armVolts) {
+        dropperMotor.setVoltage(armVolts * 12);
+        // dropperMotor.getPIDController().setReference(speedUp, ControlType.kVelocity, 0);
+    }
+    public void stop(){
+        dropperMotor.stopMotor();
     }
     //Runs the drop intake motor    
 

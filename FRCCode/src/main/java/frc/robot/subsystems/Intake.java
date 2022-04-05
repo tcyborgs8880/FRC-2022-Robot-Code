@@ -41,17 +41,14 @@ public class Intake extends SubsystemBase {
         backIntakeMotor = new CANSparkMax(Constants.backIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
         sideIntakeMotor = new CANSparkMax(Constants.sideIntakeSpark, CANSparkMaxLowLevel.MotorType.kBrushless);
         sideIntakeMotor.setInverted(true);
+        backIntakeMotor.setInverted(true);
     }
 
     //Sets all intake motors to the same speed
     public void intakeMotors(double intakeVoltage){
-        frontIntakeMotor.setVoltage(intakeVoltage * 12);
+        frontIntakeMotor.setVoltage(intakeVoltage * 8);
         backIntakeMotor.setVoltage(intakeVoltage * 12);
-        sideIntakeMotor.setVoltage(intakeVoltage * 12);
+        sideIntakeMotor.setVoltage(intakeVoltage * 8);
     }
-    
-
-   
-
     
 }

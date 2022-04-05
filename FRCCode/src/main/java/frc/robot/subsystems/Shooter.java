@@ -43,7 +43,7 @@ public class Shooter extends SubsystemBase {
 
   public void shootShooter(double shooterVolts){
     shooterMotor.setVoltage(shooterVolts * 12);
-    beltMotor.setVoltage(shooterVolts * 3);
+    beltMotor.setVoltage(shooterVolts * 6);
   }
 
   @Override
