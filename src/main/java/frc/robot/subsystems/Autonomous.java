@@ -30,18 +30,22 @@ public class Autonomous extends SubsystemBase {
   }
 
   public void print(){
-    SmartDashboard.putNumber("turn Effort Raw:", gyro.getYaw());
-    SmartDashboard.putNumber("turn Effort Mod:", gyro.getDisplacementX());
+    SmartDashboard.putNumber("Yaw:", gyro.getYaw());
+    SmartDashboard.putNumber("displacement x:", gyro.getDisplacementX());
+  }
+
+  public void reset(){
+    gyro.reset();
   }
 
 
 
+  public boolean turnToAngle(double forwardSpeed, double theta){
+    double leftTurn = 0, rightTurn = 0, minPower = 0.3;
+    boolean atAngle = false; //Returns true when the angle desired has been reached
 
-  public void turnToAngle(double forwardSpeed, double theta){
-    double leftTurn = 0, rightTurn = 0, minPower = .1;
-
-    double  desiredEffort = 0.2,
-            maxAngle = 45,
+    double  desiredEffort = 0.5,
+            maxAngle = 180,
             currentAngle = gyro.getYaw(),
             desiredAngle = theta,
             maxError = maxAngle - desiredAngle,
@@ -51,7 +55,10 @@ public class Autonomous extends SubsystemBase {
             turningEffort = rawTurningEffort;
 
     if(Math.abs(rawTurningEffort) < minPower) turningEffort = minPower * rawTurningEffort/Math.abs(rawTurningEffort); //Set minimum value
-    if(Math.abs(rawTurningEffort) < 0.02) turningEffort = 0.0; //Set Deadzone
+    if(Math.abs(rawTurningEffort) < 0.01) {
+      turningEffort = 0.0; //Set Deadzone
+      atAngle = true;
+    }      
 
     if (turningEffort > 0){
       leftTurn = turningEffort;
@@ -62,11 +69,14 @@ public class Autonomous extends SubsystemBase {
       rightTurn = -turningEffort;
     }
 
+    SmartDashboard.putBoolean("at angle: ", atAngle);
     SmartDashboard.putNumber("kP: ", kP);
     SmartDashboard.putNumber("turn Effort Raw:", rawTurningEffort);
     SmartDashboard.putNumber("turn Effort Mod:", turningEffort);
 
     Robot.Drivetrain.tankDriveVolts(-(forwardSpeed+leftTurn), -(forwardSpeed+rightTurn));
+    
+    return atAngle;
   }
 
 
